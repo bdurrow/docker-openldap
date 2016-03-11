@@ -119,6 +119,9 @@ EOF
   # to avoid error (#6) we hard delete TLS config
   if [ -e "$WAS_STARTED_WITH_TLS" ]; then
     sed -i '/olcTLS/d' /etc/ldap/slapd.d/cn\=config.ldif
+  fi
+  
+  if [ "${LDAP_TLS}" == "True" ]; then
     TLS_PARAM="ldaps://$HOSTNAME"
   fi
 
