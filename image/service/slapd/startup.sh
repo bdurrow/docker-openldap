@@ -121,7 +121,7 @@ EOF
     sed -i '/olcTLS/d' /etc/ldap/slapd.d/cn\=config.ldif
   fi
   
-  if [ "${LDAP_TLS}" == "True" ]; then
+  if [ "${LDAP_TLS}" == "true" ]; then
     TLS_PARAM="ldaps://$HOSTNAME"
   fi
 
