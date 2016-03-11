@@ -119,11 +119,12 @@ EOF
   # to avoid error (#6) we hard delete TLS config
   if [ -e "$WAS_STARTED_WITH_TLS" ]; then
     sed -i '/olcTLS/d' /etc/ldap/slapd.d/cn\=config.ldif
+    TLS_PARAM="ldaps://$HOSTNAME"
   fi
 
   # start OpenLDAP
   log-helper info "Start OpenLDAP..."
-  slapd -h "ldap://$HOSTNAME $PREVIOUS_HOSTNAME_PARAM ldap://localhost ldapi:///" -u openldap -g openldap -d $LDAP_LOG_LEVEL
+  slapd -h "ldap://$HOSTNAME $TLS_PARAM $PREVIOUS_HOSTNAME_PARAM ldap://localhost ldapi:///" -u openldap -g openldap -d $LDAP_LOG_LEVEL
 
 
   #
